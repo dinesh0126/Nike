@@ -59,58 +59,50 @@ tl5.to(".center-blue-shoe", {
 let circle1 = document.querySelector("#circle1");
 let circle2 = document.querySelector("#circle2");
 let circle3 = document.querySelector("#circle3");
+let storeTabs = document.querySelectorAll(".store-tab");
 let newimg = document.querySelector(".newimg");
 let malltitle = document.querySelector(".malltitle");
 let malldesc = document.querySelector(".mall-desc2");
+const setActiveStore = (activeBtn) => {
+    storeTabs.forEach((btn) => {
+        btn.classList.toggle("is-active", btn === activeBtn);
+    });
+};
 circle1.addEventListener("click", function() {
     newimg.src = "./images/Malltwo.avif";
     malltitle.innerHTML = "CHENNAI";
     malldesc.innerHTML = "Avenue And Phoenix Markcity";
-    circle1.style.backgroundColor = "#c0dc4f7d";
-    circle1.innerHTML = "Click ME";
+    setActiveStore(circle1);
     gsap.from(newimg, {
         duration: 0.2,
         opacity: 0,
         scale: 0,
     });
-});
-circle1.addEventListener("mouseleave", function() {
-    circle1.style.backgroundColor = "";
-    circle1.innerHTML = "";
 });
 circle2.addEventListener("click", function() {
     newimg.src = "./images/Mallthree.jpg";
     malltitle.innerHTML = "HYDERABAD";
     malldesc.innerHTML = "Inorbit Mall And GVK One Mall";
-    circle2.style.backgroundColor = "#c0dc4f7d";
-    circle2.innerHTML = "Click ME";
+    setActiveStore(circle2);
     gsap.from(newimg, {
         duration: 0.2,
         opacity: 0,
         scale: 0,
     });
-});
-circle2.addEventListener("mouseleave", function() {
-    circle2.style.backgroundColor = "";
-    circle2.innerHTML = "";
 });
 
 circle3.addEventListener("click", function() {
     newimg.src = "./images/Mall6.avif";
     malltitle.innerHTML = "MUMBAI";
     malldesc.innerHTML = "Infinity Mall in Malad";
-    circle3.style.backgroundColor = "#c0dc4f7d";
-    circle3.innerHTML = "Click ME";
+    setActiveStore(circle3);
     gsap.from(newimg, {
         duration: 0.2,
         opacity: 0,
         scale: 0,
     });
 });
-circle3.addEventListener("mouseleave", function() {
-    circle3.style.backgroundColor = "";
-    circle3.innerHTML = "";
-});
+setActiveStore(circle1);
 
 const videoOverLay1 = document.querySelector("#video-over1");
 const tl6 = gsap.timeline({
@@ -169,3 +161,32 @@ t9.from("#content ,.Made-text",{
         scrub:2,
     }
 })
+
+gsap.utils.toArray(".reveal-up").forEach((item) => {
+    gsap.from(item, {
+        y: 60,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: {
+            trigger: item,
+            start: "top 80%",
+            end: "top 60%",
+            toggleActions: "play none none reverse",
+        },
+    });
+});
+
+gsap.from(".me-image-wrap img", {
+    rotate: -35,
+    scale: 0.85,
+    opacity: 0,
+    duration: 1.2,
+    ease: "power2.out",
+    scrollTrigger: {
+        trigger: ".me-section",
+        start: "top 70%",
+        end: "top 40%",
+        toggleActions: "play none none reverse",
+    },
+});
